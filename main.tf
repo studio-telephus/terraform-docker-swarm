@@ -12,6 +12,7 @@ module "swarm_container" {
   image      = var.image
   restart    = var.restart
   privileged = var.containers[count.index].privileged
+  entrypoint = var.containers[count.index].entrypoint
   networks = [
     {
       name         = var.containers[count.index].network_name

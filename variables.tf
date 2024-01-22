@@ -15,6 +15,7 @@ variable "containers" {
     environment  = map(any)
     exec         = string
     privileged   = bool
+    entrypoint   = list(string)
   }))
 }
 
