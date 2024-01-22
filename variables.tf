@@ -2,6 +2,10 @@ variable "image" {
   type = string
 }
 
+variable "restart" {
+  type = string
+}
+
 variable "containers" {
   type = list(object({
     name         = string
