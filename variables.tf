@@ -44,11 +44,7 @@ variable "exec_enabled" {
 }
 
 variable "volumes" {
-  type = list(object({
-    container_path = string
-    host_path      = string
-    read_only      = bool
-  }))
+  type        = list(any)
   description = "Spec for mounting volumes in the container."
   default     = []
 }
