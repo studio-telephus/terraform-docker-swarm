@@ -18,15 +18,18 @@ variable "network_name" {
 }
 
 variable "mount_dirs" {
-  type = list(string)
+  type    = list(string)
+  default = []
 }
 
 variable "environment" {
-  type = map(any)
+  type    = map(any)
+  default = {}
 }
 
 variable "exec" {
-  type = string
+  type    = string
+  default = null
 }
 
 variable "privileged" {
@@ -35,7 +38,8 @@ variable "privileged" {
 }
 
 variable "entrypoint" {
-  type = list(string)
+  type    = list(string)
+  default = []
 }
 
 variable "exec_enabled" {
