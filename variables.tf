@@ -47,6 +47,7 @@ variable "volumes" {
   type = list(object({
     container_path = string
     host_path      = string
+    read_only      = bool
   }))
   description = "Spec for mounting volumes in the container."
   default     = []
