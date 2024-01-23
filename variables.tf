@@ -9,14 +9,33 @@ variable "restart" {
 variable "containers" {
   type = list(object({
     name         = string
-    network_name = string
     ipv4_address = string
-    mount_dirs   = list(string)
-    environment  = map(any)
-    exec         = string
-    privileged   = bool
-    entrypoint   = list(string)
   }))
+}
+
+variable "network_name" {
+  type = string
+}
+
+variable "mount_dirs" {
+  type = list(string)
+}
+
+variable "environment" {
+  type = map(any)
+}
+
+variable "exec" {
+  type = string
+}
+
+variable "privileged" {
+  type    = bool
+  default = false
+}
+
+variable "entrypoint" {
+  type = list(string)
 }
 
 variable "exec_enabled" {

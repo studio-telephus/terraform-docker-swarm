@@ -1,3 +1,10 @@
+locals {
+  env_ipv4_addresses = [for i, item in var.containers : {
+    key : replace("${upper(item.name)}_IP", "-", "_"),
+    value : item.ipv4_address
+  }]
+}
+
 resource "null_resource" "container_environment" {
   triggers = {
     for item in local.env_ipv4_addresses :
@@ -11,19 +18,19 @@ module "swarm_container" {
   name       = var.containers[count.index].name
   image      = var.image
   restart    = var.restart
-  privileged = var.containers[count.index].privileged
-  entrypoint = var.containers[count.index].entrypoint
+  privileged = var.privileged
+  entrypoint = var.entrypoint
   networks = [
     {
-      name         = var.containers[count.index].network_name
+      name         = var.network_name
       ipv4_address = var.containers[count.index].ipv4_address
     }
   ]
-  mount_dirs   = var.containers[count.index].mount_dirs
+  mount_dirs   = var.mount_dirs
   exec_enabled = var.exec_enabled
-  exec         = var.containers[count.index].exec
+  exec         = var.exec
   environment = merge(
     null_resource.container_environment.triggers,
-    var.containers[count.index].environment
+    var.environment
   )
 }
