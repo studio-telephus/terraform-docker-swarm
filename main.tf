@@ -29,8 +29,10 @@ module "swarm_container" {
   mount_dirs   = var.mount_dirs
   exec_enabled = var.exec_enabled
   exec         = var.exec
+  volumes      = var.volumes
   environment = merge(
     null_resource.container_environment.triggers,
     var.environment
   )
+
 }
